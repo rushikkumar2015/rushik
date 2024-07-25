@@ -7,8 +7,8 @@ import com.example.song.Song;
 
 @RestController
 
-class SongController implements SongServices {
-    SongServices songservice = new SongServices();
+class SongController {
+    SongService songservice = new SongService();
 
     @GetMapping("/songs")
     public ArrayList<Song> getSongs() {
@@ -17,7 +17,7 @@ class SongController implements SongServices {
 
     @GetMapping("/songs/{songId}")
     public Song getSongById(@PathVariable("songId") int songId) {
-        return songservice.getSongId(songId);
+        return songservice.getSongById(songId);
     }
 
     @PostMapping("/songs")
@@ -26,12 +26,12 @@ class SongController implements SongServices {
     }
 
     @PutMapping("/songs/{songId}")
-    public Song updateSong(@PathVariable("songId") int songId, @requestBody Song song) {
+    public Song updateSong(@PathVariable("songId") int songId, @RequestBody Song song) {
         return songservice.updateSong(songId, song);
     }
 
     @DeleteMapping("/songs/{songId}")
-    public void deleteSong(@PathVariable("sonId") int songId) {
+    public void deleteSong(@PathVariable("songId") int songId) {
         songservice.deleteSong(songId);
     }
 
